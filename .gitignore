@@ -1,0 +1,16 @@
+node_modules
+dist
+dist-ssr
+.venv
+__pycache__
+*.pyc
+*.local
+.env
+.env.*
+!.env.example
+.DS_Store
+playwright-report
+test-results
+.vite
+
+reports/*.png

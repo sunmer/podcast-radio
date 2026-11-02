@@ -1,0 +1,103 @@
+{
+  "checkedAt": "2026-11-02T08:22:58.327Z",
+  "checks": 309,
+  "failures": [],
+  "inconclusive": [
+    {
+      "kind": "recommendation",
+      "url": "https://news.ycombinator.com/item?id=50249600",
+      "status": 403,
+      "reason": "HN rate limiting or access restriction"
+    },
+    {
+      "kind": "recommendation",
+      "url": "https://news.ycombinator.com/item?id=50203083",
+      "status": 403,
+      "reason": "HN rate limiting or access restriction"
+    },
+    {
+      "kind": "recommendation",
+      "url": "https://news.ycombinator.com/item?id=50232436",
+      "status": 403,
+      "reason": "HN rate limiting or access restriction"
+    },
+    {
+      "kind": "recommendation",
+      "url": "https://news.ycombinator.com/item?id=36656790",
+      "status": 403,
+      "reason": "HN rate limiting or access restriction"
+    },
+    {
+      "kind": "recommendation",
+      "url": "https://news.ycombinator.com/item?id=30042663",
+      "status": 403,
+      "reason": "HN rate limiting or access restriction"
+    },
+    {
+      "kind": "recommendation",
+      "url": "https://news.ycombinator.com/item?id=20473137",
+      "status": 403,
+      "reason": "HN rate limiting or access restriction"
+    },
+    {
+      "kind": "recommendation",
+      "url": "https://news.ycombinator.com/item?id=19830980",
+      "status": 403,
+      "reason": "HN rate limiting or access restriction"
+    },
+    {
+      "kind": "recommendation",
+      "url": "https://news.ycombinator.com/item?id=33899257",
+      "status": 403,
+      "reason": "HN rate limiting or access restriction"
+    },
+    {
+      "kind": "recommendation",
+      "url": "https://news.ycombinator.com/item?id=34202715",
+      "status": 403,
+      "reason": "HN rate limiting or access restriction"
+    },
+    {
+      "kind": "recommendation",
+      "url": "https://news.ycombinator.com/item?id=36175815",
+      "status": 403,
+      "reason": "HN rate limiting or access restriction"
+    },
+    {
+      "kind": "recommendation",
+      "url": "https://news.ycombinator.com/item?id=21094234",
+      "status": 403,
+      "reason": "HN rate limiting or access restriction"
+    },
+    {
+      "kind": "recommendation",
+      "url": "https://news.ycombinator.com/item?id=31433313",
+      "status": 403,
+      "reason": "HN rate limiting or access restriction"
+    },
+    {
+      "kind": "recommendation",
+      "url": "https://news.ycombinator.com/item?id=46507861",
+      "status": 403,
+      "reason": "HN rate limiting or access restriction"
+    },
+    {
+      "kind": "recommendation",
+      "url": "https://news.ycombinator.com/item?id=26217671",
+      "status": 403,
+      "reason": "HN rate limiting or access restriction"
+    },
+    {
+      "kind": "recommendation",
+      "url": "https://news.ycombinator.com/item?id=40796047",
+      "status": 403,
+      "reason": "HN rate limiting or access restriction"
+    },
+    {
+      "kind": "recommendation",
+      "url": "https://news.ycombinator.com/item?id=24026975",
+      "status": 403,
+      "reason": "HN rate limiting or access restriction"
+    }
+  ]
+}

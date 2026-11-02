@@ -1,0 +1,13 @@
+{
+  "checkedAt": "2026-11-02T08:23:12.141Z",
+  "excluded": [
+    {
+      "id": "+ZpQA7ciS0",
+      "reason": "MEDIA_ELEMENT_ERROR: Format error"
+    },
+    {
+      "id": "+RxHE3jC4w",
+      "reason": "MEDIA_ELEMENT_ERROR: Format error"
+    }
+  ]
+}
