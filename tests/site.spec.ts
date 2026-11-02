@@ -79,7 +79,10 @@ test('radio plays from the middle and Tune works repeatedly', async ({ page }) =
   await page.getByRole('button', { name: 'Pause radio', exact: true }).click()
   await expect.poll(() => audio.evaluate((element) => (element as HTMLAudioElement).paused)).toBe(true)
   await page.evaluate(() => window.scrollTo(0, 0))
-  await page.screenshot({ path: `reports/radio-${test.info().project.name}.png`, fullPage: true })
+  const playBounds = await page.getByRole('button', { name: 'Play radio', exact: true }).boundingBox()
+  expect(playBounds).not.toBeNull()
+  expect(playBounds!.y + playBounds!.height).toBeLessThan(page.viewportSize()!.height - 76)
+  await page.screenshot({ path: `reports/radio-${test.info().project.name}.png` })
 })
 
 test('search and saved episodes work', async ({ page }) => {

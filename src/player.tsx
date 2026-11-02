@@ -142,7 +142,7 @@ export function PlayerProvider({ children, episodes }: { children: ReactNode; ep
     }
     // Wait for actual decoded media at the requested position, not just a play event.
     const finishTransition = () => {
-      if (id !== requestId.current || audio.readyState < 2 || audio.seeking) return
+      if (id !== requestId.current || audio.paused || audio.readyState < 2 || audio.seeking) return
       if (startAt && audio.currentTime < startAt - 2) return
       window.clearTimeout(transitionTimer.current)
       const remaining = requestedMode === 'radio' ? Math.max(0, 1000 - (performance.now() - transitionStarted.current)) : 0
@@ -163,7 +163,10 @@ export function PlayerProvider({ children, episodes }: { children: ReactNode; ep
       setPlaying(true)
       remember(episode, requestedMode === 'radio')
       finishTransition()
-    }).catch(fail)
+    }).catch((reason: unknown) => {
+      if (reason instanceof DOMException && reason.name === 'AbortError' && audio.paused) return
+      fail()
+    })
   }, [beginStatic, remember, stopStatic, episodes.length])
 
   const buildQueue = useCallback(() => {
