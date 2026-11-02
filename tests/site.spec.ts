@@ -4,17 +4,29 @@ test('discover renders verified catalog and can start a card', async ({ page }) 
   await page.goto('./')
   await expect(page.getByRole('heading', { name: 'Hacker Radio', exact: true })).toBeVisible()
   await expect(page.getByText(/\d+ episodes recommended/)).toBeVisible()
-  const play = page.getByRole('button', { name: /^Play / }).first()
+  const play = page.locator('#discover').getByRole('button', { name: /^Play / }).first()
   await expect(play).toBeVisible()
   await play.click()
   await expect(page.getByLabel('Now playing')).toBeVisible()
+  const title = await page.locator('.player-copy strong').textContent()
+  await expect(page.locator('.station-title')).toHaveText(title!)
 })
 
-test('radio view exposes the station controls', async ({ page }) => {
+test('radio is first and Discover is on the same page', async ({ page }) => {
   await page.goto('./')
-  await page.getByRole('button', { name: 'Radio', exact: true }).click()
   await expect(page.getByRole('button', { name: /Play radio|Pause radio/ })).toBeVisible()
   await expect(page.getByRole('button', { name: 'Tune', exact: true })).toBeVisible()
+  await expect(page.locator('#discover')).toBeAttached()
+  const radio = await page.locator('#radio').boundingBox()
+  const discover = await page.locator('#discover').boundingBox()
+  expect(radio!.y + radio!.height).toBeLessThanOrEqual(discover!.y + 1)
+  expect(discover!.y).toBeLessThan(page.viewportSize()!.height)
+  await page.getByRole('link', { name: 'Discover', exact: true }).click()
+  await expect(page).toHaveURL(/#discover$/)
+  await page.getByRole('textbox', { name: 'Search episodes' }).fill('nuclear')
+  await page.getByRole('link', { name: 'Radio', exact: true }).click()
+  await expect(page).toHaveURL(/#radio$/)
+  await expect(page.getByRole('textbox', { name: 'Search episodes' })).toHaveValue('nuclear')
 })
 
 test('mobile layout has no horizontal overflow', async ({ page }) => {
@@ -53,7 +65,6 @@ test('radio plays from the middle and Tune works repeatedly', async ({ page }) =
     } as typeof Audio
   })
   await page.goto('./')
-  await page.getByRole('button', { name: 'Radio', exact: true }).click()
   await page.getByRole('button', { name: 'Play radio', exact: true }).click()
   const audio = page.locator('audio[data-player]')
   await expect.poll(() => audio.evaluate((element) => {
@@ -78,11 +89,61 @@ test('radio plays from the middle and Tune works repeatedly', async ({ page }) =
   }), { timeout: 15000 }).toBe(true)
   await page.getByRole('button', { name: 'Pause radio', exact: true }).click()
   await expect.poll(() => audio.evaluate((element) => (element as HTMLAudioElement).paused)).toBe(true)
-  await page.evaluate(() => window.scrollTo(0, 0))
+  await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }))
   const playBounds = await page.getByRole('button', { name: 'Play radio', exact: true }).boundingBox()
   expect(playBounds).not.toBeNull()
   expect(playBounds!.y + playBounds!.height).toBeLessThan(page.viewportSize()!.height - 76)
   await page.screenshot({ path: `reports/radio-${test.info().project.name}.png` })
+})
+
+test('saved state is shared between the radio and Discover', async ({ page }) => {
+  await page.goto('./')
+  await page.getByRole('button', { name: 'Save current episode', exact: true }).click()
+  await page.getByRole('button', { name: 'Saved', exact: true }).click()
+  await expect(page.locator('.episode-card')).toHaveCount(1)
+  await page.getByRole('button', { name: 'Remove from saved', exact: true }).click()
+  await expect(page.locator('.episode-card')).toHaveCount(0)
+  await expect(page.getByRole('button', { name: 'Save current episode', exact: true })).toHaveAttribute('aria-pressed', 'false')
+})
+
+test('tuning variants last two seconds, change, and stop on pause', async ({ page }) => {
+  await page.addInitScript(() => {
+    type Clip = { duration: number; fingerprint: number; started: number; stopped: boolean }
+    const clips: Clip[] = []
+    Object.assign(window, { tuningClips: clips })
+    const create = AudioContext.prototype.createBufferSource
+    AudioContext.prototype.createBufferSource = function () {
+      const source = create.call(this)
+      const start = source.start.bind(source)
+      const stop = source.stop.bind(source)
+      let clip: Clip
+      source.start = (...args: Parameters<typeof start>) => {
+        clip = { duration: source.buffer!.duration, fingerprint: source.buffer!.getChannelData(0)[1000], started: performance.now(), stopped: false }
+        clips.push(clip)
+        start(...args)
+      }
+      source.stop = (...args: Parameters<typeof stop>) => {
+        if (clip) clip.stopped = true
+        stop(...args)
+      }
+      return source
+    }
+  })
+  await page.goto('./')
+  await page.getByRole('button', { name: 'Play radio', exact: true }).click()
+  await expect(page.getByRole('status')).toHaveText('TUNING')
+  await page.waitForTimeout(500)
+  await expect(page.getByRole('status')).toHaveText('TUNING')
+  await expect(page.getByRole('status')).toHaveText('ON AIR', { timeout: 25000 })
+  await page.getByRole('button', { name: 'Tune', exact: true }).click()
+  await expect(page.getByRole('status')).toHaveText('TUNING')
+  await expect(page.getByRole('button', { name: 'Pause radio', exact: true })).toBeVisible()
+  await page.getByRole('button', { name: 'Pause radio', exact: true }).click()
+  await expect(page.getByRole('status')).toHaveText('STANDBY')
+  const clips = await page.evaluate(() => (window as unknown as { tuningClips: { duration: number; fingerprint: number; stopped: boolean }[] }).tuningClips)
+  expect(clips.length).toBeGreaterThanOrEqual(2)
+  expect(clips.every((clip) => clip.duration === 2 && clip.stopped)).toBe(true)
+  for (let index = 1; index < clips.length; index += 1) expect(clips[index].fingerprint).not.toBe(clips[index - 1].fingerprint)
 })
 
 test('search and saved episodes work', async ({ page }) => {

@@ -14,6 +14,7 @@
 }
 * { box-sizing: border-box; }
 body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); }
+html { scroll-behavior: smooth; scroll-padding-top: 94px; }
 button, input, select { font: inherit; }
 button, a { -webkit-tap-highlight-color: transparent; }
 button { cursor: pointer; }
@@ -26,11 +27,10 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .brand-mark { width: 38px; height: 38px; border: 2px solid var(--ink); border-radius: 50%; display: grid; place-items: center; background: var(--orange); }
 .brand-mark svg { width: 20px; }
 .topbar nav { display: flex; gap: 4px; }
-.topbar nav button, .text-button, .download-button { border: 0; background: transparent; color: var(--muted); padding: 9px 12px; display: flex; align-items: center; gap: 7px; text-decoration: none; font-size: 14px; font-weight: 650; }
-.topbar nav button { border-radius: 4px; }
-.topbar nav button svg, .text-button svg, .download-button svg { width: 16px; }
-.topbar nav button.active { color: var(--ink); background: #e6e2d8; }
-.topbar nav button:hover, .text-button:hover { color: var(--ink); }
+.topbar nav a, .text-button, .download-button { border: 0; background: transparent; color: var(--muted); padding: 9px 12px; display: flex; align-items: center; gap: 7px; text-decoration: none; font-size: 14px; font-weight: 650; }
+.topbar nav a { border-radius: 4px; }
+.topbar nav a svg, .text-button svg, .download-button svg { width: 16px; }
+.topbar nav a:hover, .text-button:hover { color: var(--ink); background: #e7ebea; }
 .top-actions { margin-left: auto; display: flex; align-items: center; gap: 6px; }
 .download-button { border: 1px solid var(--line); border-radius: 4px; color: var(--ink); }
 .about-banner { display: flex; align-items: center; gap: 12px; background: #fbe7d9; border-bottom: 1px solid #eab898; padding: 13px clamp(16px, 4vw, 56px); }
@@ -41,7 +41,7 @@ main { max-width: 1420px; margin: auto; padding: 0 clamp(16px, 4vw, 56px); }
 .discover-hero { display: flex; align-items: flex-end; justify-content: space-between; gap: 28px; padding: 28px 0 24px; border-bottom: 1px solid var(--line); }
 .eyebrow { display: flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 11px; letter-spacing: 0; text-transform: uppercase; color: var(--muted); }
 .eyebrow svg { width: 14px; height: 14px; color: var(--orange); }
-.discover-hero h1 { font-size: 40px; letter-spacing: 0; line-height: 1.1; margin: 12px 0; max-width: 970px; font-weight: 800; }
+.discover-hero h2 { font-size: 28px; letter-spacing: 0; line-height: 1.1; margin: 12px 0; font-weight: 800; }
 .discover-hero p { margin: 0; max-width: 510px; color: var(--muted); font-size: 15px; line-height: 1.55; }
 .hero-stat { min-width: 185px; padding: 17px 20px; border-left: 2px solid var(--orange); display: flex; flex-direction: column; gap: 3px; }
 .hero-stat strong { font-size: 36px; line-height: 1; letter-spacing: 0; }
@@ -90,9 +90,11 @@ main { max-width: 1420px; margin: auto; padding: 0 clamp(16px, 4vw, 56px); }
 .recommendations > div > span { color: var(--ink); font-weight: 700; }
 .recommendations p { margin: 3px 0 4px; display: block; -webkit-line-clamp: unset; }
 .recommendations a { color: var(--orange-dark); display: inline-flex; align-items: center; gap: 4px; font-size: 10px; font-weight: 700; text-decoration: none; }
-.radio-view { min-height: calc(100svh - 175px); display: flex; flex-direction: column; justify-content: center; padding: 48px 0 30px; }
-.radio-stage { max-width: 1000px; width: 100%; margin: auto; display: grid; grid-template-columns: minmax(260px, 430px) minmax(280px, 1fr); align-items: center; gap: clamp(28px, 7vw, 90px); }
-.radio-image-wrap { position: relative; aspect-ratio: 1; border: 1px solid var(--line); box-shadow: 20px 20px 0 var(--charcoal); background: var(--charcoal); }
+.radio-view { padding: 24px 0 38px; border-bottom: 1px solid var(--line); }
+.radio-heading { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 24px; }
+.radio-heading h1 { font-size: 28px; line-height: 1.2; margin: 0; }
+.radio-stage { width: 100%; display: grid; grid-template-columns: minmax(220px, 300px) minmax(0, 1fr); align-items: center; gap: 48px; }
+.radio-image-wrap { position: relative; aspect-ratio: 1; border: 1px solid var(--line); box-shadow: 10px 10px 0 var(--charcoal); background: var(--charcoal); }
 .radio-art { width: 100%; height: 100%; display: block; object-fit: cover; filter: saturate(.82); }
 .radio-art.is-live { animation: on-air 3.5s ease-in-out infinite; }
 @keyframes on-air { 0%,100% { filter: saturate(.82); } 50% { filter: saturate(1.12); } }
@@ -100,8 +102,8 @@ main { max-width: 1420px; margin: auto; padding: 0 clamp(16px, 4vw, 56px); }
 .on-air i { width: 6px; height: 6px; background: #fff; border-radius: 50%; animation: blink 1.2s step-end infinite; }
 @keyframes blink { 50% { opacity: .2; } }
 .radio-copy .eyebrow { color: var(--orange-dark); }
-.radio-copy h1 { font-size: 32px; letter-spacing: 0; line-height: 1.15; margin: 15px 0 14px; overflow-wrap: anywhere; }
-.radio-copy > p { color: var(--muted); font-size: 14px; line-height: 1.6; max-width: 560px; }
+.radio-copy .station-title { font-size: 26px; letter-spacing: 0; line-height: 1.2; margin: 12px 0; overflow-wrap: anywhere; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.radio-copy > p { color: var(--muted); font-size: 14px; line-height: 1.6; max-width: 650px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .station-meta { display: flex; flex-wrap: wrap; gap: 6px; margin: 19px 0 24px; }
 .station-meta span { font-family: var(--mono); font-size: 10px; text-transform: uppercase; padding: 4px 6px; background: #eae7de; }
 .radio-actions { display: flex; align-items: center; gap: 15px; }
@@ -149,8 +151,9 @@ footer a svg { width: 11px; }
 @media (max-width: 680px) {
   .app-shell { padding-bottom: 88px; }
   .topbar { height: 66px; padding: 0 12px; gap: 9px; }
-  .topbar nav button { font-size: 0; padding: 9px; }
-  .topbar nav button svg { width: 19px; height: 19px; }
+  html { scroll-padding-top: 80px; }
+  .topbar nav a { font-size: 0; padding: 9px; }
+  .topbar nav a svg { width: 19px; height: 19px; }
   .top-actions .text-button { font-size: 0; padding: 9px; }
   .top-actions .download-button { font-size: 0; padding: 9px; }
   .brand { gap: 6px; font-size: 9px; }
@@ -162,7 +165,7 @@ footer a svg { width: 11px; }
   .about-banner .text-button { margin-left: 27px; padding: 0; }
   main { padding: 0 12px; }
   .discover-hero { padding: 24px 0 18px; align-items: flex-start; flex-direction: column; gap: 12px; }
-  .discover-hero h1 { font-size: 28px; margin-top: 10px; }
+  .discover-hero h2 { font-size: 24px; margin-top: 10px; }
   .hero-stat { display: none; }
   .hero-stat strong { font-size: 30px; }
   .toolbar { gap: 6px; padding-top: 15px; }
@@ -183,14 +186,20 @@ footer a svg { width: 11px; }
   .recommendation-count { font-size: 9px; }
   .play-overlay { width: 35px; height: 35px; right: 8px; bottom: 8px; opacity: 1; }
   .play-overlay svg { width: 15px; }
-  .radio-view { padding: 28px 0 12px; min-height: 0; }
-  .radio-stage { grid-template-columns: 1fr; gap: 22px; }
-  .radio-image-wrap { width: min(58vw, 220px); margin: 0 auto; box-shadow: 8px 8px 0 var(--charcoal); }
-  .radio-copy h1 { font-size: 24px; }
-  .radio-copy > p { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .radio-view { padding: 20px 0 24px; }
+  .radio-heading { margin-bottom: 18px; gap: 8px; }
+  .radio-heading h1 { font-size: 24px; }
+  .radio-heading .eyebrow { font-size: 9px; text-align: right; }
+  .radio-stage { grid-template-columns: 1fr; gap: 18px; }
+  .radio-image-wrap { width: min(40vw, 160px); margin: 0 auto; box-shadow: 6px 6px 0 var(--charcoal); }
+  .radio-copy .station-title { font-size: 20px; margin: 8px 0; }
+  .radio-copy > p { display: none; }
   .radio-copy { display: flex; flex-direction: column; }
-  .radio-actions { justify-content: center; order: -1; margin-bottom: 20px; }
-  .radio-copy .eyebrow, .radio-copy h1, .radio-copy > p, .station-meta, .radio-help { text-align: center; justify-content: center; }
+  .radio-actions { justify-content: center; order: -1; margin-bottom: 14px; }
+  .radio-play { width: 60px; height: 60px; }
+  .radio-play svg { width: 26px; height: 26px; }
+  .station-meta { margin: 8px 0 0; }
+  .radio-copy .eyebrow, .radio-copy .station-title, .radio-copy > p, .station-meta, .radio-help { text-align: center; justify-content: center; }
   .radio-copy > p { margin-left: auto; margin-right: auto; }
   .radio-secondary { justify-content: center; }
   .radio-strip { margin-top: 35px; gap: 7px; font-size: 8px; }

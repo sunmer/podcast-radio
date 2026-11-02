@@ -2,7 +2,7 @@ import { Bookmark, BookmarkCheck, ExternalLink, MessageSquare, Play, Radio, Sear
 import { useMemo, useState } from 'react'
 import { episodeSearchText, formatDate, formatDuration, recommendationDate, shuffle } from './lib'
 import { usePlayer } from './player'
-import { affinityStore, savedStore } from './storage'
+import { affinityStore } from './storage'
 import { type Episode, TOPICS, type Topic } from './types'
 
 type LengthFilter = 'any' | 'short' | 'medium' | 'long'
@@ -10,17 +10,17 @@ type Sort = 'recommended' | 'newest' | 'shuffle'
 
 interface Props {
   episodes: Episode[]
+  saved: Set<string>
   onSavedChange: (ids: Set<string>) => void
 }
 
-export function Discover({ episodes, onSavedChange }: Props) {
+export function Discover({ episodes, saved, onSavedChange }: Props) {
   const player = usePlayer()
   const [query, setQuery] = useState('')
   const [topic, setTopic] = useState<Topic | 'All'>('All')
   const [length, setLength] = useState<LengthFilter>('any')
   const [sort, setSort] = useState<Sort>('recommended')
   const [savedOnly, setSavedOnly] = useState(false)
-  const [saved, setSaved] = useState(() => savedStore.get())
   const [expandedRecommendations, setExpandedRecommendations] = useState<string | null>(null)
   const affinity = affinityStore.get()
 
@@ -52,15 +52,15 @@ export function Discover({ episodes, onSavedChange }: Props) {
     const next = new Set(saved)
     if (next.has(episode.id)) next.delete(episode.id)
     else next.add(episode.id)
-    setSaved(next); savedStore.set(next); onSavedChange(next)
+    onSavedChange(next)
   }
 
   return (
-    <section className="discover-view">
+    <section className="discover-view" id="discover" aria-labelledby="discover-title">
       <header className="discover-hero">
         <div>
           <span className="eyebrow"><Radio /> HN PODCAST INDEX</span>
-          <h1>Hacker Radio</h1>
+          <h2 id="discover-title">Discover</h2>
           <p>{episodes.length} episodes recommended by real people, checked for this POC.</p>
         </div>
         <div className="hero-stat"><strong>{episodes.reduce((sum, item) => sum + item.recommendationCount, 0)}</strong><span>HN recommendations</span></div>
@@ -68,7 +68,7 @@ export function Discover({ episodes, onSavedChange }: Props) {
 
       <div className="toolbar">
         <label className="search-field"><Search aria-hidden="true" /><span className="sr-only">Search episodes</span><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search episodes, shows, topics" /></label>
-        <button type="button" className={`filter-button ${savedOnly ? 'active' : ''}`} onClick={() => setSavedOnly(!savedOnly)}><Bookmark size={16} /> Saved</button>
+        <button type="button" aria-pressed={savedOnly} className={`filter-button ${savedOnly ? 'active' : ''}`} onClick={() => setSavedOnly(!savedOnly)}><Bookmark size={16} /> Saved</button>
         <label className="select-field"><SlidersHorizontal size={16} aria-hidden="true" /><span className="sr-only">Length</span><select value={length} onChange={(event) => setLength(event.target.value as LengthFilter)}><option value="any">Any length</option><option value="short">Under 30 min</option><option value="medium">30–90 min</option><option value="long">Over 90 min</option></select></label>
         <label className="select-field"><span className="sr-only">Sort</span><select value={sort} onChange={(event) => setSort(event.target.value as Sort)}><option value="recommended">Most recommended</option><option value="newest">Recently shared</option><option value="shuffle">Shuffle</option></select></label>
       </div>

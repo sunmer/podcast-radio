@@ -6,15 +6,17 @@ import { assetUrl } from './lib'
 import { PlayerProvider } from './player'
 import { RadioView } from './RadioView'
 import type { Catalog } from './types'
-
-type View = 'discover' | 'radio'
+import { savedStore } from './storage'
 
 export default function App() {
   const [catalog, setCatalog] = useState<Catalog | null>(null)
   const [error, setError] = useState<string | null>(null)
-  const [view, setView] = useState<View>('discover')
   const [showAbout, setShowAbout] = useState(false)
-  const [, setSaved] = useState(() => new Set<string>())
+  const [saved, setSaved] = useState(() => savedStore.get())
+  const updateSaved = (ids: Set<string>) => {
+    setSaved(ids)
+    savedStore.set(ids)
+  }
 
   useEffect(() => {
     fetch(assetUrl('data/catalog.json'))
@@ -30,12 +32,15 @@ export default function App() {
   return <PlayerProvider episodes={catalog.entries}>
     <div className="app-shell">
       <header className="topbar">
-        <a className="brand" href={assetUrl('')} aria-label="Hacker Radio home"><span className="brand-mark"><Radio /></span><span>HACKER<br /><b>RADIO</b></span></a>
-        <nav aria-label="Main navigation"><button type="button" className={view === 'discover' ? 'active' : ''} onClick={() => setView('discover')}><Search />Discover</button><button type="button" className={view === 'radio' ? 'active' : ''} onClick={() => setView('radio')}><Radio />Radio</button></nav>
+        <a className="brand" href="#radio" aria-label="Hacker Radio home"><span className="brand-mark"><Radio /></span><span>HACKER<br /><b>RADIO</b></span></a>
+        <nav aria-label="Main navigation"><a href="#radio" title="Radio"><Radio />Radio</a><a href="#discover" title="Discover"><Search />Discover</a></nav>
         <div className="top-actions"><button type="button" className="text-button" onClick={() => setShowAbout(!showAbout)}><Info />About</button><a className="download-button" href={assetUrl('data/catalog.json')} download><Download />Data</a></div>
       </header>
       {showAbout && <aside className="about-banner"><Info /><p>Hacker Radio is a one-off proof of concept built from podcast episodes linked in public Hacker News comments. Audio plays directly from each publisher; nothing is rehosted. Audio and artwork were checked for launch. HN may rate-limit checks of the original comments.</p><button type="button" className="text-button" onClick={() => setShowAbout(false)}>Close</button></aside>}
-      <main>{view === 'discover' ? <Discover episodes={catalog.entries} onSavedChange={setSaved} /> : <RadioView episodes={catalog.entries} />}</main>
+      <main>
+        <RadioView episodes={catalog.entries} saved={saved} onSavedChange={updateSaved} />
+        <Discover episodes={catalog.entries} saved={saved} onSavedChange={updateSaved} />
+      </main>
       <footer><span>Built from public HN comments</span><span>{catalog.entries.length} verified episodes · Catalog {new Date(catalog.generatedAt).toLocaleDateString()}</span><a href="https://news.ycombinator.com" target="_blank" rel="noreferrer">Hacker News <ExternalLink /></a></footer>
     </div>
   </PlayerProvider>

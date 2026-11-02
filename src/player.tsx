@@ -3,6 +3,7 @@ import { type ReactNode, useCallback, useEffect, useMemo, useRef, useState } fro
 import { chooseRadioStart, formatDuration, shuffle } from './lib'
 import { affinityStore, playedStore, radioStore } from './storage'
 import type { Episode } from './types'
+import { createTuningSource, nextTuningVariant, TUNING_SECONDS } from './tuning'
 
 type PlayerMode = 'episode' | 'radio'
 
@@ -10,6 +11,7 @@ interface PlayerContextValue {
   active: Episode | null
   mode: PlayerMode | null
   playing: boolean
+  tuning: boolean
   progress: number
   duration: number
   playEpisode: (episode: Episode, mode?: PlayerMode) => void
@@ -20,21 +22,12 @@ interface PlayerContextValue {
   error: string | null
 }
 
-export function createStaticNoise(ctx: AudioContext): AudioBufferSourceNode {
-  const buffer = ctx.createBuffer(1, ctx.sampleRate * 5, ctx.sampleRate)
-  const data = buffer.getChannelData(0)
-  for (let index = 0; index < data.length; index += 1) data[index] = Math.random() * 2 - 1
-  const source = ctx.createBufferSource()
-  source.buffer = buffer
-  source.loop = true
-  return source
-}
-
 export function PlayerProvider({ children, episodes }: { children: ReactNode; episodes: Episode[] }) {
   const audioRef = useRef<HTMLAudioElement | null>(null)
   const audioContextRef = useRef<AudioContext | null>(null)
   const staticSourceRef = useRef<AudioBufferSourceNode | null>(null)
   const staticGainRef = useRef<GainNode | null>(null)
+  const lastTuningVariant = useRef(-1)
   const transitionTimer = useRef<number | undefined>(undefined)
   const transitionStarted = useRef(0)
   const requestId = useRef(0)
@@ -44,6 +37,7 @@ export function PlayerProvider({ children, episodes }: { children: ReactNode; ep
   const [active, setActive] = useState<Episode | null>(null)
   const [mode, setMode] = useState<PlayerMode | null>(null)
   const [playing, setPlaying] = useState(false)
+  const [tuning, setTuning] = useState(false)
   const [progress, setProgress] = useState(0)
   const [duration, setDuration] = useState(0)
   const [radioPlayed, setRadioPlayed] = useState(() => radioStore.get())
@@ -77,10 +71,11 @@ export function PlayerProvider({ children, episodes }: { children: ReactNode; ep
     audioContextRef.current ??= new AudioContext()
     const ctx = audioContextRef.current
     void ctx.resume().catch(() => {})
-    const source = createStaticNoise(ctx)
+    lastTuningVariant.current = nextTuningVariant(lastTuningVariant.current)
+    const source = createTuningSource(ctx, lastTuningVariant.current)
     const gain = ctx.createGain()
     gain.gain.setValueAtTime(0, ctx.currentTime)
-    gain.gain.linearRampToValueAtTime(0.12, ctx.currentTime + 0.12)
+    gain.gain.linearRampToValueAtTime(0.45, ctx.currentTime + 0.06)
     source.connect(gain).connect(ctx.destination)
     source.start()
     staticSourceRef.current = source
@@ -108,6 +103,7 @@ export function PlayerProvider({ children, episodes }: { children: ReactNode; ep
     audio.pause()
     setError(null)
     setPlaying(false)
+    setTuning(requestedMode === 'radio')
     transitionStarted.current = performance.now()
     if (requestedMode === 'radio') {
       try { beginStatic() } catch { /* Playback can continue without the static effect. */ }
@@ -126,6 +122,7 @@ export function PlayerProvider({ children, episodes }: { children: ReactNode; ep
       stopStatic()
       audio.pause()
       setPlaying(false)
+      setTuning(false)
       if (requestedMode === 'radio') {
         failedStations.current.add(episode.id)
         if (failedStations.current.size < Math.min(5, episodes.length)) {
@@ -145,10 +142,11 @@ export function PlayerProvider({ children, episodes }: { children: ReactNode; ep
       if (id !== requestId.current || audio.paused || audio.readyState < 2 || audio.seeking) return
       if (startAt && audio.currentTime < startAt - 2) return
       window.clearTimeout(transitionTimer.current)
-      const remaining = requestedMode === 'radio' ? Math.max(0, 1000 - (performance.now() - transitionStarted.current)) : 0
+      const remaining = requestedMode === 'radio' ? Math.max(0, TUNING_SECONDS * 1000 - (performance.now() - transitionStarted.current)) : 0
       transitionTimer.current = window.setTimeout(() => {
         if (id !== requestId.current) return
         stopStatic()
+        setTuning(false)
         audio.volume = 1
         failedStations.current.clear()
         audio.onplaying = null
@@ -206,6 +204,7 @@ export function PlayerProvider({ children, episodes }: { children: ReactNode; ep
     else {
       window.clearTimeout(transitionTimer.current)
       stopStatic()
+      setTuning(false)
       audio.volume = 1
       audio.pause()
       setPlaying(false)
@@ -283,7 +282,7 @@ export function PlayerProvider({ children, episodes }: { children: ReactNode; ep
     audioRef.current?.pause()
   }, [stopStatic])
 
-  const value = useMemo(() => ({ active, mode, playing, progress, duration, playEpisode, playRadio, tune, toggle, canTune, error }), [active, mode, playing, progress, duration, playEpisode, playRadio, tune, toggle, canTune, error])
+  const value = useMemo(() => ({ active, mode, playing, tuning, progress, duration, playEpisode, playRadio, tune, toggle, canTune, error }), [active, mode, playing, tuning, progress, duration, playEpisode, playRadio, tune, toggle, canTune, error])
   return <PlayerContext.Provider value={value}>{children}<PlayerBar /></PlayerContext.Provider>
 }
 

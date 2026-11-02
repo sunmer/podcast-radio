@@ -6,13 +6,16 @@ A one-off proof of concept that turns podcast episodes recommended in Hacker New
 
 ## What is included
 
-- Discover mode with search, topic and length filters, sorting, saves, play history, and a For You row.
-- Radio mode with generated static, mid-episode starts, keyboard controls, Media Session hooks, and automatic station changes.
+- One radio-first page with Discover directly below, section navigation, and shared playback and saves.
+- Discover with search, topic and length filters, sorting, saves, play history, and a For You row.
+- Radio with three original two-second synthesized tuning variants, mid-episode starts, keyboard controls, Media Session hooks, and automatic station changes.
 - 104 podcast episodes with direct publisher audio links and provenance links back to the HN comments that linked them.
 - A JSON catalog download at `data/catalog.json`, relative to the site.
 - A one-off Python import pipeline and explicit link-audit tooling.
 
 Audio is streamed directly from podcast publishers. Nothing is copied or rehosted.
+
+The tuning effects in `src/tuning.ts` mix bandwidth-changing hiss, crackles, carrier sweeps, and squelch dips. Variants are cached in memory, chosen randomly without immediate repeats, and faded when playback begins (two-second minimum, four-second loading timeout). These are original synthesized effects, not clips from the suggested Soundsnap recording. Using that recording requires a licensed original and confirmation of the appropriate distribution terms before placing assets in a public repository.
 
 ## Development
 
