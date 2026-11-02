@@ -10,17 +10,20 @@ test('discover renders verified catalog and can start a card', async ({ page }) 
   await expect(page.getByLabel('Now playing')).toBeVisible()
   const title = await page.locator('.player-copy strong').textContent()
   await expect(page.locator('.station-title')).toHaveText(title!)
+  await expect(page.getByRole('heading', { name: 'All recommended episodes', exact: true })).toBeVisible()
+  await expect(page.getByText('For you', { exact: true })).toHaveCount(0)
+  await expect(page.getByText('BASED ON YOUR LISTENING', { exact: true })).toHaveCount(0)
+  await expect(page.locator('.episode-card')).toHaveCount(104)
 })
 
 test('radio is first and Discover is on the same page', async ({ page }) => {
   await page.goto('./')
   await expect(page.getByRole('button', { name: /Play radio|Pause radio/ })).toBeVisible()
-  await expect(page.getByRole('button', { name: 'Tune', exact: true })).toBeVisible()
+  await expect(page.getByRole('button', { name: 'Next', exact: true })).toBeVisible()
   await expect(page.locator('#discover')).toBeAttached()
   const radio = await page.locator('#radio').boundingBox()
   const discover = await page.locator('#discover').boundingBox()
   expect(radio!.y + radio!.height).toBeLessThanOrEqual(discover!.y + 1)
-  expect(discover!.y).toBeLessThan(page.viewportSize()!.height)
   await page.getByRole('link', { name: 'Discover', exact: true }).click()
   await expect(page).toHaveURL(/#discover$/)
   await page.getByRole('textbox', { name: 'Search episodes' }).fill('nuclear')
@@ -52,7 +55,7 @@ test('the first playable audio source loads media in Chromium', async ({ page })
   expect(result.ok).toBe(true)
 })
 
-test('radio plays from the middle and Tune works repeatedly', async ({ page }) => {
+test('radio plays the displayed pick from the middle and Next works repeatedly', async ({ page }) => {
   await page.addInitScript(() => {
     const NativeAudio = window.Audio
     window.Audio = function (...args: ConstructorParameters<typeof Audio>) {
@@ -65,7 +68,10 @@ test('radio plays from the middle and Tune works repeatedly', async ({ page }) =
     } as typeof Audio
   })
   await page.goto('./')
+  await expect(page.locator('.station-title')).toBeVisible()
+  const initial = await page.locator('.station-title').textContent()
   await page.getByRole('button', { name: 'Play radio', exact: true }).click()
+  await expect(page.locator('.player-copy strong')).toHaveText(initial!)
   const audio = page.locator('audio[data-player]')
   await expect.poll(() => audio.evaluate((element) => {
     const media = element as HTMLAudioElement
@@ -73,7 +79,7 @@ test('radio plays from the middle and Tune works repeatedly', async ({ page }) =
   }), { timeout: 30000 }).toBe(true)
   for (let station = 0; station < 2; station += 1) {
     const previous = await audio.getAttribute('src')
-    await page.getByRole('button', { name: 'Tune', exact: true }).click()
+    await page.getByRole('button', { name: 'Next', exact: true }).click()
     await expect(audio).not.toHaveAttribute('src', previous!)
     await expect.poll(() => audio.evaluate((element) => {
       const media = element as HTMLAudioElement
@@ -135,7 +141,7 @@ test('tuning variants last two seconds, change, and stop on pause', async ({ pag
   await page.waitForTimeout(500)
   await expect(page.getByRole('status')).toHaveText('TUNING')
   await expect(page.getByRole('status')).toHaveText('ON AIR', { timeout: 25000 })
-  await page.getByRole('button', { name: 'Tune', exact: true }).click()
+  await page.getByRole('button', { name: 'Next', exact: true }).click()
   await expect(page.getByRole('status')).toHaveText('TUNING')
   await expect(page.getByRole('button', { name: 'Pause radio', exact: true })).toBeVisible()
   await page.getByRole('button', { name: 'Pause radio', exact: true }).click()
@@ -144,6 +150,44 @@ test('tuning variants last two seconds, change, and stop on pause', async ({ pag
   expect(clips.length).toBeGreaterThanOrEqual(2)
   expect(clips.every((clip) => clip.duration === 2 && clip.stopped)).toBe(true)
   for (let index = 1; index < clips.length; index += 1) expect(clips[index].fingerprint).not.toBe(clips[index - 1].fingerprint)
+})
+
+test('initial radio pick changes on reload and remains stable while browsing', async ({ page }) => {
+  await page.goto('./')
+  await expect(page.locator('.station-title')).toBeVisible()
+  const first = await page.locator('#radio').getAttribute('data-episode-id')
+  await page.getByRole('button', { name: 'About', exact: true }).click()
+  await expect(page.locator('#radio')).toHaveAttribute('data-episode-id', first!)
+  await page.reload()
+  await expect(page.locator('#radio')).not.toHaveAttribute('data-episode-id', first!)
+  await expect(page.getByRole('status')).toHaveText('STANDBY')
+})
+
+test('radio comment context matches the current episode and updates on Next', async ({ page }) => {
+  await page.goto('./')
+  await expect(page.locator('.station-title')).toBeVisible()
+  const entries = await page.evaluate(async () => (await (await fetch(new URL('data/catalog.json', document.baseURI))).json()).entries)
+  const verifyContext = async () => {
+    const id = await page.locator('#radio').getAttribute('data-episode-id')
+    const episode = entries.find((entry: { id: string }) => entry.id === id)
+    const context = page.getByRole('complementary', { name: 'Hacker News comment context' })
+    const first = episode.recommendations[0]
+    await expect(context.locator('blockquote').first()).toHaveText(first.excerpt)
+    await expect(context.locator('.comment-byline').first()).toContainText(first.author)
+    await expect(context.locator('.comment-thread').first()).toHaveText(first.storyTitle)
+    await expect(context.locator('.comment-source').first()).toHaveAttribute('href', first.commentUrl)
+    if (episode.recommendations.length > 1) {
+      await context.locator('summary').first().click()
+      await expect(context.locator('.comment-source').nth(1)).toBeVisible()
+    }
+    return id
+  }
+  const firstId = await verifyContext()
+  await page.getByRole('button', { name: 'Next', exact: true }).click()
+  await expect(page.locator('#radio')).not.toHaveAttribute('data-episode-id', firstId!)
+  await verifyContext()
+  await page.getByRole('complementary', { name: 'Hacker News comment context' }).scrollIntoViewIfNeeded()
+  await page.screenshot({ path: `reports/context-${test.info().project.name}.png` })
 })
 
 test('search and saved episodes work', async ({ page }) => {

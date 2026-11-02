@@ -2,7 +2,6 @@ import { Bookmark, BookmarkCheck, ExternalLink, MessageSquare, Play, Radio, Sear
 import { useMemo, useState } from 'react'
 import { episodeSearchText, formatDate, formatDuration, recommendationDate, shuffle } from './lib'
 import { usePlayer } from './player'
-import { affinityStore } from './storage'
 import { type Episode, TOPICS, type Topic } from './types'
 
 type LengthFilter = 'any' | 'short' | 'medium' | 'long'
@@ -22,7 +21,6 @@ export function Discover({ episodes, saved, onSavedChange }: Props) {
   const [sort, setSort] = useState<Sort>('recommended')
   const [savedOnly, setSavedOnly] = useState(false)
   const [expandedRecommendations, setExpandedRecommendations] = useState<string | null>(null)
-  const affinity = affinityStore.get()
 
   const filtered = useMemo(() => {
     let list = episodes.filter((episode) => {
@@ -39,14 +37,6 @@ export function Discover({ episodes, saved, onSavedChange }: Props) {
     if (sort === 'shuffle') list = shuffle(list)
     return list
   }, [episodes, query, topic, length, sort, savedOnly, saved])
-
-  const forYou = useMemo(() => {
-    const ranked = [...episodes].sort((a, b) => {
-      const score = (episode: Episode) => episode.topics.reduce((total, item) => total + (affinity[item] ?? 0), 0)
-      return score(b) - score(a) || b.recommendationCount - a.recommendationCount
-    })
-    return ranked.slice(0, 5)
-  }, [episodes, affinity])
 
   const toggleSave = (episode: Episode) => {
     const next = new Set(saved)
@@ -77,10 +67,8 @@ export function Discover({ episodes, saved, onSavedChange }: Props) {
         {TOPICS.map((item) => <button type="button" key={item} className={`topic-chip ${topic === item ? 'active' : ''}`} onClick={() => setTopic(item)}>{item}</button>)}
       </div>
 
-      {forYou.length > 0 && !query && topic === 'All' && !savedOnly && <section className="for-you"><div className="section-heading"><span className="eyebrow">BASED ON YOUR LISTENING</span><h2>For you</h2></div><div className="episode-grid compact">{forYou.map((episode) => <EpisodeCard key={episode.id} episode={episode} saved={saved.has(episode.id)} onSave={toggleSave} onPlay={() => player.playEpisode(episode)} expanded={expandedRecommendations === episode.id} onToggleRecommendations={() => setExpandedRecommendations(expandedRecommendations === episode.id ? null : episode.id)} />)}</div></section>}
-
       <section>
-        <div className="section-heading"><span className="eyebrow">EXPLORE</span><h2>{savedOnly ? 'Saved episodes' : query ? `Results for “${query}”` : 'The catalog'}</h2><span>{filtered.length} episodes</span></div>
+        <div className="section-heading"><h2>{savedOnly ? 'Saved episodes' : query ? `Results for “${query}”` : 'All recommended episodes'}</h2><span>{filtered.length} episodes</span></div>
         {filtered.length === 0 ? <div className="empty-state"><Shuffle /><h3>No episodes found</h3><p>Try a different search or filter.</p></div> : <div className="episode-grid">{filtered.map((episode) => <EpisodeCard key={episode.id} episode={episode} saved={saved.has(episode.id)} onSave={toggleSave} onPlay={() => player.playEpisode(episode)} expanded={expandedRecommendations === episode.id} onToggleRecommendations={() => setExpandedRecommendations(expandedRecommendations === episode.id ? null : episode.id)} />)}</div>}
       </section>
     </section>

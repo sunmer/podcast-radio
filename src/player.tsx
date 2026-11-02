@@ -8,6 +8,7 @@ import { createTuningSource, nextTuningVariant, TUNING_SECONDS } from './tuning'
 type PlayerMode = 'episode' | 'radio'
 
 interface PlayerContextValue {
+  initialEpisode: Episode | null
   active: Episode | null
   mode: PlayerMode | null
   playing: boolean
@@ -33,6 +34,21 @@ export function PlayerProvider({ children, episodes }: { children: ReactNode; ep
   const requestId = useRef(0)
   const failedStations = useRef(new Set<string>())
   const nextStationRef = useRef<() => void>(() => {})
+  const [initialEpisode] = useState(() => {
+    const eligible = episodes.filter((episode) => episode.durationSeconds >= 600)
+    const unplayed = eligible.filter((episode) => !radioStore.get().has(episode.id))
+    const pool = unplayed.length ? unplayed : eligible
+    let previous: string | null = null
+    try { previous = sessionStorage.getItem('hacker-radio:last-initial') } catch { /* Storage is optional. */ }
+    const different = pool.filter((episode) => episode.id !== previous)
+    const candidates = different.length ? different : pool
+    return candidates[Math.floor(Math.random() * candidates.length)] ?? episodes[0] ?? null
+  })
+  useEffect(() => {
+    if (initialEpisode) {
+      try { sessionStorage.setItem('hacker-radio:last-initial', initialEpisode.id) } catch { /* Storage is optional. */ }
+    }
+  }, [initialEpisode])
   const [error, setError] = useState<string | null>(null)
   const [active, setActive] = useState<Episode | null>(null)
   const [mode, setMode] = useState<PlayerMode | null>(null)
@@ -130,7 +146,7 @@ export function PlayerProvider({ children, episodes }: { children: ReactNode; ep
           return
         }
       }
-      setError('This audio could not start. Try another episode or tune again.')
+      setError('This audio could not start. Try another episode or press Next.')
     }
     audio.onerror = fail
     audio.onloadedmetadata = () => {
@@ -179,18 +195,23 @@ export function PlayerProvider({ children, episodes }: { children: ReactNode; ep
   }, [episodes, radioPlayed])
 
   const nextStation = useCallback(() => {
-    const queue = radioQueue.some((episode) => episode.id !== active?.id && !failedStations.current.has(episode.id)) ? radioQueue : buildQueue()
-    const next = queue.find((episode) => episode.id !== active?.id && !failedStations.current.has(episode.id))
+    const currentId = active?.id ?? initialEpisode?.id
+    const queue = radioQueue.some((episode) => episode.id !== currentId && !failedStations.current.has(episode.id)) ? radioQueue : buildQueue()
+    const next = queue.find((episode) => episode.id !== currentId && !failedStations.current.has(episode.id))
     if (!next) {
       setError('No other station is available. Try playing an episode from Discover.')
       return
     }
     setRadioQueue(queue.filter((episode) => episode.id !== next.id))
     playEpisode(next, 'radio')
-  }, [active?.id, buildQueue, playEpisode, radioQueue])
+  }, [active?.id, initialEpisode?.id, buildQueue, playEpisode, radioQueue])
   useEffect(() => { nextStationRef.current = nextStation }, [nextStation])
 
-  const playRadio = useCallback(() => { failedStations.current.clear(); nextStation() }, [nextStation])
+  const playRadio = useCallback(() => {
+    failedStations.current.clear()
+    if (!active && initialEpisode) playEpisode(initialEpisode, 'radio')
+    else nextStation()
+  }, [active, initialEpisode, playEpisode, nextStation])
   const tune = useCallback(() => {
     failedStations.current.clear()
     nextStation()
@@ -282,7 +303,7 @@ export function PlayerProvider({ children, episodes }: { children: ReactNode; ep
     audioRef.current?.pause()
   }, [stopStatic])
 
-  const value = useMemo(() => ({ active, mode, playing, tuning, progress, duration, playEpisode, playRadio, tune, toggle, canTune, error }), [active, mode, playing, tuning, progress, duration, playEpisode, playRadio, tune, toggle, canTune, error])
+  const value = useMemo(() => ({ initialEpisode, active, mode, playing, tuning, progress, duration, playEpisode, playRadio, tune, toggle, canTune, error }), [initialEpisode, active, mode, playing, tuning, progress, duration, playEpisode, playRadio, tune, toggle, canTune, error])
   return <PlayerContext.Provider value={value}>{children}<PlayerBar /></PlayerContext.Provider>
 }
 
@@ -310,7 +331,7 @@ function PlayerBar() {
       <button type="button" className="icon-button primary" onClick={toggle} aria-label={playing ? 'Pause' : 'Play'}>
         {playing ? <Pause /> : <Play />}
       </button>
-      <button type="button" className="icon-button" onClick={tune} disabled={!canTune} aria-label="Tune to next station"><SkipForward /></button>
+      <button type="button" className="icon-button" onClick={tune} disabled={!canTune} aria-label="Next episode" title="Next episode"><SkipForward /></button>
       <Volume2 className="volume-icon" aria-hidden="true" />
     </aside>
   )

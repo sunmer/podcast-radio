@@ -7,7 +7,9 @@ A one-off proof of concept that turns podcast episodes recommended in Hacker New
 ## What is included
 
 - One radio-first page with Discover directly below, section navigation, and shared playback and saves.
-- Discover with search, topic and length filters, sorting, saves, play history, and a For You row.
+- Discover with one "All recommended episodes" catalog, search, topic and length filters, sorting, saves, and play history.
+- A random initial radio pick (avoiding the previous initial pick in the same tab), with Play starting the displayed episode and Next advancing it.
+- Current episode context with HN author, discussion title, comment excerpt, and links to the original comment and discussion.
 - Radio with three original two-second synthesized tuning variants, mid-episode starts, keyboard controls, Media Session hooks, and automatic station changes.
 - 104 podcast episodes with direct publisher audio links and provenance links back to the HN comments that linked them.
 - A JSON catalog download at `data/catalog.json`, relative to the site.

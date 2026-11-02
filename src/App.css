@@ -117,6 +117,18 @@ main { max-width: 1420px; margin: auto; padding: 0 clamp(16px, 4vw, 56px); }
 .radio-secondary { display: flex; gap: 8px; margin-top: 14px; }
 .radio-secondary button { min-height: 32px; border: 0; padding: 0; color: var(--muted); font-size: 11px; }
 .radio-secondary button:hover { background: transparent; color: var(--ink); }
+.radio-context { margin-top: 28px; padding-top: 16px; border-top: 1px solid var(--line); max-width: 920px; }
+.radio-context h3 { display: flex; align-items: center; gap: 7px; font-size: 13px; margin: 0 0 12px; }
+.radio-comment { font-size: 13px; line-height: 1.6; overflow-wrap: anywhere; }
+.comment-byline { display: flex; flex-wrap: wrap; gap: 12px; font-family: var(--mono); font-size: 11px; color: var(--muted); }
+.comment-thread { color: var(--ink); font-weight: 650; }
+.radio-comment a { display: inline-flex; align-items: baseline; gap: 6px; text-decoration: none; }
+.radio-comment a:hover { text-decoration: underline; }
+.radio-comment svg { flex-shrink: 0; }
+.radio-comment blockquote { border-left: 2px solid var(--orange); margin: 10px 0; padding-left: 12px; color: var(--muted); }
+.comment-source { color: var(--orange-dark); font-size: 12px; }
+.radio-context details { margin-top: 12px; }
+.radio-context summary { cursor: pointer; color: var(--muted); font-size: 12px; padding: 6px 0; }
 .radio-help { font-family: var(--mono); font-size: 10px !important; color: #99958d !important; margin-top: 24px; }
 .radio-strip { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); margin-top: 55px; padding: 13px 0; display: flex; justify-content: space-around; gap: 12px; color: var(--muted); font-family: var(--mono); font-size: 9px; letter-spacing: 0; flex-wrap: wrap; }
 .empty-state, .loading-state { min-height: 70svh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 30px; }
