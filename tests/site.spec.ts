@@ -69,8 +69,16 @@ test('radio plays from the middle and Tune works repeatedly', async ({ page }) =
       return !media.paused && media.readyState >= 2 && media.currentTime >= 178 && media.volume > 0
     }), { timeout: 30000 }).toBe(true)
   }
+  const previous = await audio.getAttribute('src')
+  await page.keyboard.press('ArrowRight')
+  await expect(audio).not.toHaveAttribute('src', previous!)
+  await expect.poll(() => audio.evaluate((element) => {
+    const media = element as HTMLAudioElement
+    return !media.paused && media.readyState >= 2 && media.volume > 0
+  }), { timeout: 15000 }).toBe(true)
   await page.getByRole('button', { name: 'Pause radio', exact: true }).click()
   await expect.poll(() => audio.evaluate((element) => (element as HTMLAudioElement).paused)).toBe(true)
+  await page.evaluate(() => window.scrollTo(0, 0))
   await page.screenshot({ path: `reports/radio-${test.info().project.name}.png`, fullPage: true })
 })
 

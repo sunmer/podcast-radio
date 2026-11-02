@@ -1,769 +1,736 @@
 {
-  "checkedAt": "2026-11-02T08:23:12.141Z",
-  "site": "http://127.0.0.1:4174/",
-  "checks": 106,
-  "failures": [
-    {
-      "id": "+ZpQA7ciS0",
-      "title": "Bitcoin is a Right-Wing Technology w/ David Golumbia",
-      "ok": false,
-      "error": "MEDIA_ELEMENT_ERROR: Format error",
-      "duration": null,
-      "position": 0
-    },
-    {
-      "id": "+RxHE3jC4w",
-      "title": "Matthew Walker Ph.D, Author of “Why We Sleep: Unlocking the Power of Sleep and Dreams” (#17)",
-      "ok": false,
-      "error": "MEDIA_ELEMENT_ERROR: Format error",
-      "duration": null,
-      "position": 0
-    }
-  ],
+  "checkedAt": "2026-11-02T08:28:13.976Z",
+  "site": "https://sunmer.github.io/podcast-radio/",
+  "checks": 104,
+  "failures": [],
   "results": [
     {
       "id": "what-it-really-takes-to-convert-office-building",
       "title": "What It Really Takes to Convert an Office Building Into Apartments",
       "ok": true,
       "duration": 2922.866939,
-      "position": 180.213008
-    },
-    {
-      "id": "an-arizona-farmer-on-how-to-grow-alfalfa-in-the-mi",
-      "title": "An Arizona Farmer on How to Grow Alfalfa in the Middle of the Desert",
-      "ok": true,
-      "duration": 2666.213878,
-      "position": 180.222135
-    },
-    {
-      "id": "+ZpQA7ciS0",
-      "title": "Bitcoin is a Right-Wing Technology w/ David Golumbia",
-      "ok": false,
-      "error": "MEDIA_ELEMENT_ERROR: Format error",
-      "duration": null,
-      "position": 0
-    },
-    {
-      "id": "whats-really-standing-in-the-way-of-a-nuclear-rena",
-      "title": "What's Really Standing in the Way of a Nuclear Renaissance?",
-      "ok": true,
-      "duration": 3053.087347,
-      "position": 180.220504
+      "position": 180.217478
     },
     {
       "id": "now-theres-a-helium-shortage-and-it-affects-more-than-balloons",
       "title": "Now There's a Helium Shortage and It Affects More Than Balloons",
       "ok": true,
       "duration": 3168.026122,
-      "position": 180.225149
+      "position": 180.211762
+    },
+    {
+      "id": "whats-really-standing-in-the-way-of-a-nuclear-rena",
+      "title": "What's Really Standing in the Way of a Nuclear Renaissance?",
+      "ok": true,
+      "duration": 3053.087347,
+      "position": 180.213051
+    },
+    {
+      "id": "an-arizona-farmer-on-how-to-grow-alfalfa-in-the-mi",
+      "title": "An Arizona Farmer on How to Grow Alfalfa in the Middle of the Desert",
+      "ok": true,
+      "duration": 2666.213878,
+      "position": 180.218502
     },
     {
       "id": "+_ztydHHNo",
       "title": "Qualcomm",
       "ok": true,
       "duration": 8874.495378,
-      "position": 180.216225
+      "position": 180.224669
     },
     {
       "id": "+FaxmmY8Jw",
       "title": "SpaceX",
       "ok": true,
       "duration": 9912.3145,
-      "position": 180.215092
+      "position": 180.217068
     },
     {
       "id": "why-corporate-america-still-runs-on-ancient-softwa",
       "title": "Why Corporate America Still Runs on Ancient Software That Breaks",
       "ok": true,
       "duration": 2971.297959,
-      "position": 180.220065
+      "position": 180.213559
     },
     {
       "id": "part-five-kissinger",
       "title": "Part Five: Kissinger",
       "ok": true,
       "duration": 5473.567347,
-      "position": 180.220338
+      "position": 180.213101
     },
     {
       "id": "part-four-kissinger",
       "title": "Part Four: Kissinger",
       "ok": true,
       "duration": 5069.688163,
-      "position": 180.216877
+      "position": 180.22016
     },
     {
       "id": "part-one-ai-is-coming-for-your-children",
       "title": "Part One: AI Is Coming for Your Children",
       "ok": true,
       "duration": 5170.494694,
-      "position": 180.224683
+      "position": 180.216524
     },
     {
       "id": "part-one-the-ballad-of-bill-gates",
       "title": "Part One: The Ballad of Bill Gates",
       "ok": true,
       "duration": 4920.581224,
-      "position": 180.221815
-    },
-    {
-      "id": "part-one-kissinger",
-      "title": "Part One: Kissinger",
-      "ok": true,
-      "duration": 5794.194286,
-      "position": 180.21516
+      "position": 180.218566
     },
     {
       "id": "part-one-elan-school-the-worst-troubled-teen-facil",
       "title": "Part One: Elan School: The Worst 'Troubled Teen' Facility",
       "ok": true,
       "duration": 5248.679184,
-      "position": 180.211939
+      "position": 180.217965
     },
     {
-      "id": "part-six-kissinger",
-      "title": "Part Six: Kissinger",
+      "id": "part-one-kissinger",
+      "title": "Part One: Kissinger",
       "ok": true,
-      "duration": 7234.821224,
-      "position": 180.215008
+      "duration": 5794.194286,
+      "position": 180.221606
     },
     {
       "id": "part-two-kissinger",
       "title": "Part Two: Kissinger",
       "ok": true,
       "duration": 6522.253061,
-      "position": 180.21616
+      "position": 180.211645
     },
     {
-      "id": "part-three-kissinger",
-      "title": "Part Three: Kissinger",
+      "id": "part-six-kissinger",
+      "title": "Part Six: Kissinger",
       "ok": true,
-      "duration": 5455.960816,
-      "position": 180.213716
+      "duration": 7234.821224,
+      "position": 180.215809
     },
     {
       "id": "+BGz6-w7jjI",
       "title": "I Will Piledrive You If You Mention AI Again Ft. Nik Suresh & Robert Evans",
       "ok": true,
       "duration": 3293.33551,
-      "position": 180.217601
+      "position": 180.220031
+    },
+    {
+      "id": "part-three-kissinger",
+      "title": "Part Three: Kissinger",
+      "ok": true,
+      "duration": 5455.960816,
+      "position": 180.21095
     },
     {
       "id": "how-shareholders-are-destroying-the-tech-industry",
       "title": "How Shareholders Are Destroying The Tech Industry",
       "ok": true,
       "duration": 3951.856327,
-      "position": 180.208686
-    },
-    {
-      "id": "the-cult-of-failing-upwards",
-      "title": "The Cult of Failing Upwards",
-      "ok": true,
-      "duration": 2895.046531,
-      "position": 180.221108
+      "position": 180.216976
     },
     {
       "id": "+5K6ZISYMc",
       "title": "The City That Sold Itself To Wall Street",
       "ok": true,
       "duration": 2448.84898,
-      "position": 180.225055
+      "position": 180.222612
     },
     {
-      "id": "photographing-fairies-classic",
-      "title": "Photographing Fairies (Classic)",
+      "id": "the-cult-of-failing-upwards",
+      "title": "The Cult of Failing Upwards",
       "ok": true,
-      "duration": 2415.856327,
-      "position": 180.222111
-    },
-    {
-      "id": "the-shareholder-supremacy",
-      "title": "The Shareholder Supremacy",
-      "ok": true,
-      "duration": 2628.963265,
-      "position": 180.220045
-    },
-    {
-      "id": "+ABBSPFBjze0",
-      "title": "What can game programming teach us about databases? (with Tyler Cloutier)",
-      "ok": true,
-      "duration": 3931.464,
-      "position": 180.21349
+      "duration": 2895.046531,
+      "position": 180.217836
     },
     {
       "id": "the-great-frenchmans-folly-panama-disaster-1",
       "title": "The Great Frenchman's Folly (Panama Disaster 1)",
       "ok": true,
       "duration": 2500.728163,
-      "position": 180.220676
+      "position": 180.210713
     },
     {
-      "id": "12:00",
-      "title": "Steve Krouse - val.town",
+      "id": "the-shareholder-supremacy",
+      "title": "The Shareholder Supremacy",
       "ok": true,
-      "duration": 3059.021995,
-      "position": 180.212549
+      "duration": 2628.963265,
+      "position": 180.217223
+    },
+    {
+      "id": "photographing-fairies-classic",
+      "title": "Photographing Fairies (Classic)",
+      "ok": true,
+      "duration": 2415.856327,
+      "position": 180.214246
+    },
+    {
+      "id": "+ABBSPFBjze0",
+      "title": "What can game programming teach us about databases? (with Tyler Cloutier)",
+      "ok": true,
+      "duration": 3931.464,
+      "position": 180.222478
     },
     {
       "id": "+JDN9N7o",
       "title": "Vanessa Williamson on Taxes and Read My Lips",
       "ok": true,
       "duration": 4118.67678,
-      "position": 180.22246
+      "position": 180.224377
     },
     {
       "id": "+BihlQ2Pdw",
       "title": "Episode 169 — Family-Friendly Disney",
       "ok": true,
       "duration": 3713.51102,
-      "position": 180.222282
+      "position": 180.220558
     },
     {
       "id": "sam-bankman-fried-vs-the-crypto-grift",
       "title": "Sam Bankman-Fried vs. the Crypto Grift",
       "ok": true,
       "duration": 2788.231837,
-      "position": 180.225901
+      "position": 180.212013
     },
     {
-      "id": "1-1-how-reactjs-was-created-with-pete-hunt",
-      "title": "How ReactJS was created - with Pete Hunt",
+      "id": "12:00",
+      "title": "Steve Krouse - val.town",
       "ok": true,
-      "duration": 4432.169796,
-      "position": 180.22319
-    },
-    {
-      "id": "+EmxPZFzWE",
-      "title": "The Altered State",
-      "ok": true,
-      "duration": 2168.532178,
-      "position": 180.225518
-    },
-    {
-      "id": "31:05",
-      "title": "Episode 181 — Competing with Spotify and Regulating Acquisitions",
-      "ok": true,
-      "duration": 3299.186939,
-      "position": 180.224781
-    },
-    {
-      "id": "+BihnTujyQ",
-      "title": "Episode 185 — Open, Free, and Spotify",
-      "ok": true,
-      "duration": 2931.179206,
-      "position": 180.220087
+      "duration": 3059.021995,
+      "position": 180.225818
     },
     {
       "id": "overcast.fm:Programming as Theory Building by Peter Naur — Feeling of Computing",
       "title": "Programming as Theory Building by Peter Naur",
       "ok": true,
       "duration": 6904.607347,
-      "position": 180.215453
+      "position": 180.212125
+    },
+    {
+      "id": "31:05",
+      "title": "Episode 181 — Competing with Spotify and Regulating Acquisitions",
+      "ok": true,
+      "duration": 3299.186939,
+      "position": 180.214686
+    },
+    {
+      "id": "1-1-how-reactjs-was-created-with-pete-hunt",
+      "title": "How ReactJS was created - with Pete Hunt",
+      "ok": true,
+      "duration": 4432.169796,
+      "position": 180.218923
+    },
+    {
+      "id": "+BihnTujyQ",
+      "title": "Episode 185 — Open, Free, and Spotify",
+      "ok": true,
+      "duration": 2931.179206,
+      "position": 180.214893
+    },
+    {
+      "id": "+EmxPZFzWE",
+      "title": "The Altered State",
+      "ok": true,
+      "duration": 2168.532178,
+      "position": 180.21285
     },
     {
       "id": "1:23:08",
       "title": "Episode 16: 16: The Soap Opera Effect",
       "ok": true,
       "duration": 6120.16,
-      "position": 180.210006
+      "position": 180.211268
     },
     {
       "id": "18:32",
       "title": "Episode 42: 42: The Wrong Guy",
       "ok": true,
       "duration": 4522.674125,
-      "position": 180.216909
-    },
-    {
-      "id": "episode-5-the-billionaire-who-took-down-porn",
-      "title": "Episode 5: The Billionaire Who Took Down Porn",
-      "ok": true,
-      "duration": 2436.205714,
-      "position": 180.212762
-    },
-    {
-      "id": "+6j6rLbfGM",
-      "title": "#88 - Exercise preserves muscle and metabolism during cancer with Dr Lykke Sylow",
-      "ok": true,
-      "duration": 5192.768005,
-      "position": 180.215109
-    },
-    {
-      "id": "the-effective-altruism-scam",
-      "title": "The Effective Altruism Scam",
-      "ok": true,
-      "duration": 3563.650612,
-      "position": 180.224315
+      "position": 180.213711
     },
     {
       "id": "+Xn2zXxLf4",
       "title": "1: The Newton",
       "ok": true,
       "duration": 2562.586813,
-      "position": 180.211097
-    },
-    {
-      "id": "the-junta-s-sham-elections-and-a-myanmar-update",
-      "title": "The Junta’s Sham Elections and a Myanmar Update",
-      "ok": true,
-      "duration": 3069.962449,
-      "position": 180.214482
-    },
-    {
-      "id": "+OcVcduJ_s",
-      "title": "#101 – Joscha Bach: Artificial Consciousness and the Nature of Reality",
-      "ok": true,
-      "duration": 10844.698667,
-      "position": 180.220385
-    },
-    {
-      "id": "how-a-huawei-mole-got-caught-trying-to-swing-a-200",
-      "title": "How a Huawei Mole Got Caught Trying to Swing a $200 Million 5G Contract",
-      "ok": true,
-      "duration": 1767.601633,
-      "position": 180.220774
-    },
-    {
-      "id": "+eZyDZHzsI",
-      "title": "#243 – Kevin Systrom: Instagram",
-      "ok": true,
-      "duration": 10357.780583,
-      "position": 180.221107
-    },
-    {
-      "id": "+lWf-Pr7g",
-      "title": "Eric Cline: 1177 B.C.: When Civilization Collapsed",
-      "ok": true,
-      "duration": 5268.332125,
-      "position": 180.222912
+      "position": 180.217373
     },
     {
       "id": "+Ht3jI6KDw",
       "title": "Radio Replay: Fresh Starts",
       "ok": true,
       "duration": 2929.005689,
-      "position": 180.215491
+      "position": 180.207996
+    },
+    {
+      "id": "episode-5-the-billionaire-who-took-down-porn",
+      "title": "Episode 5: The Billionaire Who Took Down Porn",
+      "ok": true,
+      "duration": 2436.205714,
+      "position": 180.214057
+    },
+    {
+      "id": "the-effective-altruism-scam",
+      "title": "The Effective Altruism Scam",
+      "ok": true,
+      "duration": 3563.650612,
+      "position": 180.216024
+    },
+    {
+      "id": "+OcVcduJ_s",
+      "title": "#101 – Joscha Bach: Artificial Consciousness and the Nature of Reality",
+      "ok": true,
+      "duration": 10844.698667,
+      "position": 180.223348
+    },
+    {
+      "id": "+6j6rLbfGM",
+      "title": "#88 - Exercise preserves muscle and metabolism during cancer with Dr Lykke Sylow",
+      "ok": true,
+      "duration": 5192.768005,
+      "position": 180.216966
+    },
+    {
+      "id": "the-junta-s-sham-elections-and-a-myanmar-update",
+      "title": "The Junta’s Sham Elections and a Myanmar Update",
+      "ok": true,
+      "duration": 3069.962449,
+      "position": 180.224744
+    },
+    {
+      "id": "how-a-huawei-mole-got-caught-trying-to-swing-a-200",
+      "title": "How a Huawei Mole Got Caught Trying to Swing a $200 Million 5G Contract",
+      "ok": true,
+      "duration": 1767.601633,
+      "position": 180.221397
+    },
+    {
+      "id": "+eZyDZHzsI",
+      "title": "#243 – Kevin Systrom: Instagram",
+      "ok": true,
+      "duration": 10357.780583,
+      "position": 180.221822
+    },
+    {
+      "id": "+lWf-Pr7g",
+      "title": "Eric Cline: 1177 B.C.: When Civilization Collapsed",
+      "ok": true,
+      "duration": 5268.332125,
+      "position": 180.215278
     },
     {
       "id": "mike-greene-on-why-passive-investing-is-hurting-ma",
       "title": "Mike Green on Why Passive Investing Is Hurting Market Structure",
       "ok": true,
       "duration": 4529.005714,
-      "position": 180.222662
-    },
-    {
-      "id": "+P0dZxP_w",
-      "title": "Ghosting, Simmering and Icing with Esther Perel",
-      "ok": true,
-      "duration": 1514.736313,
-      "position": 180.209721
+      "position": 180.224138
     },
     {
       "id": "odd-lots-david-byrne-v1",
       "title": "David Byrne Explains How Forgotten Ideas Come Back to Life",
       "ok": true,
       "duration": 3755.755102,
-      "position": 180.213773
+      "position": 180.226848
+    },
+    {
+      "id": "+P0dZxP_w",
+      "title": "Ghosting, Simmering and Icing with Esther Perel",
+      "ok": true,
+      "duration": 1514.736313,
+      "position": 180.215987
     },
     {
       "id": "ex-logger-aims-to-beat-elon-musk-in-electric-truck",
       "title": "Ex-Logger Aims to Beat Elon Musk in Electric Trucks",
       "ok": true,
       "duration": 3270.164898,
-      "position": 180.215118
-    },
-    {
-      "id": "how-a-sardine-gets-from-the-ocean-to-a-can",
-      "title": "How a Sardine Gets From the Ocean to a Can",
-      "ok": true,
-      "duration": 3602.364082,
-      "position": 180.217026
-    },
-    {
-      "id": "how-economic-complexity-explains-which-countries-b",
-      "title": "How Economic Complexity Explains Which Countries Become Rich",
-      "ok": true,
-      "duration": 3211.258776,
-      "position": 180.222277
+      "position": 180.217379
     },
     {
       "id": "how-the-invention-of-rope-gave-us-modern-civilization",
       "title": "How the Invention of Rope Gave Us Modern Civilization",
       "ok": true,
       "duration": 2346.762449,
-      "position": 180.223584
+      "position": 180.22352
+    },
+    {
+      "id": "how-a-sardine-gets-from-the-ocean-to-a-can",
+      "title": "How a Sardine Gets From the Ocean to a Can",
+      "ok": true,
+      "duration": 3602.364082,
+      "position": 180.211537
     },
     {
       "id": "why-dinosaur-fossils-are-selling-for-millions-of-dollars",
       "title": "Inside the Booming Market for Dinosaur Fossils",
       "ok": true,
       "duration": 3068.16,
-      "position": 180.214523
+      "position": 180.220524
     },
     {
-      "id": "jim-chanos-on-why-some-of-the-worst-hit-parts-of-t",
-      "title": "Jim Chanos on Why Some of the Worst Hit Parts of the Market Still Have More Pain Ahead",
+      "id": "how-economic-complexity-explains-which-countries-b",
+      "title": "How Economic Complexity Explains Which Countries Become Rich",
       "ok": true,
-      "duration": 3278.733061,
-      "position": 180.211319
+      "duration": 3211.258776,
+      "position": 180.224197
     },
     {
       "id": "magic-the-gatherings-creator-wants-to-create-an-ev",
       "title": "Magic the Gathering's Creator Wants to Create an Even Better Game",
       "ok": true,
       "duration": 3692.538776,
-      "position": 180.222989
+      "position": 180.216251
+    },
+    {
+      "id": "jim-chanos-on-why-some-of-the-worst-hit-parts-of-t",
+      "title": "Jim Chanos on Why Some of the Worst Hit Parts of the Market Still Have More Pain Ahead",
+      "ok": true,
+      "duration": 3278.733061,
+      "position": 180.223511
     },
     {
       "id": "nys-cannabis-rollout-could-destroy-a-legal-entrepr",
       "title": "NY's Cannabis Rollout Could Destroy a Legal Entrepreneur",
       "ok": true,
       "duration": 2143.738776,
-      "position": 180.224578
-    },
-    {
-      "id": "stinson-dean-on-the-lumber-crash-that-followed-the",
-      "title": "Stinson Dean on the Lumber Crash That Followed the Boom",
-      "ok": true,
-      "duration": 3794.207347,
-      "position": 180.218477
+      "position": 180.224008
     },
     {
       "id": "paul-krugman-on-ufos-ai-and-room-temperature-super",
       "title": "Paul Krugman on UFOs, AI and Room Temperature Superconductors",
       "ok": true,
       "duration": 3041.697959,
-      "position": 180.220594
+      "position": 180.219543
     },
     {
-      "id": "the-1906-dredging-law-that-may-be-holding-back-the",
-      "title": "The 1906 Dredging Law That May Be Holding Back The U.S. Economy",
+      "id": "stinson-dean-on-the-lumber-crash-that-followed-the",
+      "title": "Stinson Dean on the Lumber Crash That Followed the Boom",
       "ok": true,
-      "duration": 3146.396735,
-      "position": 180.211308
+      "duration": 3794.207347,
+      "position": 180.218144
     },
     {
       "id": "+5AWMJLBNw",
       "title": "Steve Eisman on the ‘Paradigm Shift’ Happening in Markets Right Now",
       "ok": true,
       "duration": 3048.568163,
-      "position": 180.212364
+      "position": 180.212818
+    },
+    {
+      "id": "the-1906-dredging-law-that-may-be-holding-back-the",
+      "title": "The 1906 Dredging Law That May Be Holding Back The U.S. Economy",
+      "ok": true,
+      "duration": 3146.396735,
+      "position": 180.221099
     },
     {
       "id": "the-tungsten-market-is-warning-of-an-upcoming-war",
       "title": "The Tungsten Market Is Warning of an Upcoming War",
       "ok": true,
       "duration": 2801.475918,
-      "position": 180.211062
+      "position": 180.215572
     },
     {
       "id": "theres-a-mind-boggling-number-of-rich-people-in-america",
       "title": "There's a Mind-Boggling Number of Rich People in America",
       "ok": true,
       "duration": 3719.157551,
-      "position": 180.220069
+      "position": 180.224295
     },
     {
       "id": "what-needs-to-happen-for-the-renminbi-to-seriously",
       "title": "What Needs to Happen for the Renminbi to Seriously Compete With the Dollar",
       "ok": true,
       "duration": 2910.171429,
-      "position": 180.220248
+      "position": 180.217224
     },
     {
       "id": "the-trucking-episode-why-the-industry-is-such-a-me",
       "title": "The Trucking Episode: Why the Industry Is Such a Mess",
       "ok": true,
       "duration": 3763.591837,
-      "position": 180.223374
-    },
-    {
-      "id": "what-truckers-already-know-about-the-future-of-ele",
-      "title": "What Truckers Already Know About the Future of Electronic Worker Surveillance",
-      "ok": true,
-      "duration": 2557.152653,
-      "position": 180.222198
-    },
-    {
-      "id": "what-so-many-people-get-wrong-about-the-energy-tra",
-      "title": "What So Many People Get Wrong About The Energy Transition",
-      "ok": true,
-      "duration": 2911.320816,
-      "position": 180.222104
+      "position": 180.215824
     },
     {
       "id": "what-the-uaw-wants-from-its-fight-with-the-big-thr",
       "title": "What the UAW Wants From Its Fight With the Big Three",
       "ok": true,
       "duration": 3131.768163,
-      "position": 180.226614
+      "position": 180.211643
     },
     {
-      "id": "why-the-price-of-lumber-has-soared-day-after-day-a",
-      "title": "Why the Price of Lumber Has Soared Day After Day After Day",
+      "id": "what-so-many-people-get-wrong-about-the-energy-tra",
+      "title": "What So Many People Get Wrong About The Energy Transition",
       "ok": true,
-      "duration": 3711.973878,
-      "position": 180.223616
+      "duration": 2911.320816,
+      "position": 180.222023
     },
     {
-      "id": "+AA4jBHynCD8",
-      "title": "Whither CockroachDB?",
+      "id": "what-truckers-already-know-about-the-future-of-ele",
+      "title": "What Truckers Already Know About the Future of Electronic Worker Surveillance",
       "ok": true,
-      "duration": 5646.057347,
-      "position": 180.209702
+      "duration": 2557.152653,
+      "position": 180.223182
     },
     {
       "id": "+kmaHgw-3s",
       "title": "The Crypto Reformation with Josh Rosenthal",
       "ok": true,
       "duration": 7239.810612,
-      "position": 180.214636
+      "position": 180.210879
+    },
+    {
+      "id": "why-the-price-of-lumber-has-soared-day-after-day-a",
+      "title": "Why the Price of Lumber Has Soared Day After Day After Day",
+      "ok": true,
+      "duration": 3711.973878,
+      "position": 180.220564
+    },
+    {
+      "id": "+AA4jBHynCD8",
+      "title": "Whither CockroachDB?",
+      "ok": true,
+      "duration": 5646.057347,
+      "position": 180.218586
     },
     {
       "id": "+SFb2HXunQ",
       "title": "OMR #551 mit den Catan-Erfindern Klaus & Benjamin Teuber",
       "ok": true,
       "duration": 3299.186933,
-      "position": 180.220928
-    },
-    {
-      "id": "+JaxJ5s",
-      "title": "Rippin’ the Rainbow an Even Newer One",
-      "ok": true,
-      "duration": 1987.082438,
-      "position": 180.209919
-    },
-    {
-      "id": "from-inside-voice-lake-bell-and-the-sexy-baby-voic",
-      "title": "From Inside Voice: Lake Bell and the Sexy Baby Voice Phenomenon",
-      "ok": true,
-      "duration": 1633.567347,
-      "position": 180.22435
-    },
-    {
-      "id": "+L-hr-xp6c",
-      "title": "11.21-The Republic of Mars",
-      "ok": true,
-      "duration": 1677.77805,
-      "position": 180.218825
-    },
-    {
-      "id": "my-little-hundred-million",
-      "title": "My Little Hundred Million",
-      "ok": true,
-      "duration": 2435.448163,
-      "position": 180.224789
-    },
-    {
-      "id": "11fe6a6f-e463-4163-9393-20376e88c0db",
-      "title": "Anjney Midha's Plan to Radically Lower the Price of Compute",
-      "ok": true,
-      "duration": 3156.244898,
-      "position": 180.2226
+      "position": 180.221304
     },
     {
       "id": "kexp-song-of-the-day",
       "title": "In Our Headphones clips",
       "ok": true,
       "duration": 546.664458,
-      "position": 180.218625
+      "position": 180.210336
+    },
+    {
+      "id": "11fe6a6f-e463-4163-9393-20376e88c0db",
+      "title": "Anjney Midha's Plan to Radically Lower the Price of Compute",
+      "ok": true,
+      "duration": 3156.244898,
+      "position": 180.225311
+    },
+    {
+      "id": "from-inside-voice-lake-bell-and-the-sexy-baby-voic",
+      "title": "From Inside Voice: Lake Bell and the Sexy Baby Voice Phenomenon",
+      "ok": true,
+      "duration": 1633.567347,
+      "position": 180.213681
     },
     {
       "id": "+5Sl8Ai8LA",
       "title": "Srsly Risky Biz: IC Reform Wanted, Decent Privacy Laws Needed",
       "ok": true,
       "duration": 1334.576,
-      "position": 180.214182
+      "position": 180.219329
+    },
+    {
+      "id": "+JaxJ5s",
+      "title": "Rippin’ the Rainbow an Even Newer One",
+      "ok": true,
+      "duration": 1987.082438,
+      "position": 180.215543
+    },
+    {
+      "id": "my-little-hundred-million",
+      "title": "My Little Hundred Million",
+      "ok": true,
+      "duration": 2435.448163,
+      "position": 180.215691
     },
     {
       "id": "+AAIt0hqfC1w",
       "title": "Feature interview: ASIO Director General Mike Burgess on encryption and access",
       "ok": true,
       "duration": 1788.566042,
-      "position": 180.222666
+      "position": 180.210784
+    },
+    {
+      "id": "+L-hr-xp6c",
+      "title": "11.21-The Republic of Mars",
+      "ok": true,
+      "duration": 1677.77805,
+      "position": 180.218349
     },
     {
       "id": "+RWDUSvtD8",
       "title": "Episode 19: I want to build a world spanning search engine on top of GCP",
       "ok": true,
       "duration": 2366.101189,
-      "position": 180.218597
-    },
-    {
-      "id": "+Nvq_vr69w",
-      "title": "25 | David Chalmers on Consciousness, the Hard Problem, and Living in a Simulation",
-      "ok": true,
-      "duration": 4939.545938,
-      "position": 180.222677
+      "position": 180.218763
     },
     {
       "id": "+BBVQSkynRM",
       "title": "Why’d I take speed for twenty years? (Part 2)",
       "ok": true,
       "duration": 2720.940375,
-      "position": 180.222769
+      "position": 180.22161
+    },
+    {
+      "id": "+Nvq_vr69w",
+      "title": "25 | David Chalmers on Consciousness, the Hard Problem, and Living in a Simulation",
+      "ok": true,
+      "duration": 4939.545938,
+      "position": 180.215273
     },
     {
       "id": "+BBVQRWO5g8",
       "title": "Why’d I take speed for twenty years? (Part 1)",
       "ok": true,
       "duration": 3319.797542,
-      "position": 180.217453
-    },
-    {
-      "id": "+BwaxYul7M",
-      "title": "85: Sydney Beer Week 2017 Live! at the Royal Albert Hotel",
-      "ok": true,
-      "duration": 3958.540045,
-      "position": 180.22015
+      "position": 180.220058
     },
     {
       "id": "+AAzXlUoaiV0",
       "title": "Is the Universe a Math Problem? With Terence Tao",
       "ok": true,
       "duration": 3355.768125,
-      "position": 180.220057
+      "position": 180.214657
     },
     {
       "id": "+hrS5e2XoU",
       "title": "Clock synchronization with Chris Perl",
       "ok": true,
       "duration": 2668.130375,
-      "position": 180.223022
+      "position": 180.221274
     },
     {
-      "id": "+Do0X1PN6k",
-      "title": "1A: Overview and Introduction to Lisp",
+      "id": "+BwaxYul7M",
+      "title": "85: Sydney Beer Week 2017 Live! at the Royal Albert Hotel",
       "ok": true,
-      "duration": 4373.172,
-      "position": 180.216584
-    },
-    {
-      "id": "15:30",
-      "title": "Tales from the Crypt #61: Jack Dorsey",
-      "ok": true,
-      "duration": 2104.379501,
-      "position": 180.220081
+      "duration": 3958.540045,
+      "position": 180.214663
     },
     {
       "id": "28:35",
       "title": "3Blue1Brown | Siraj Raval Podcast #3",
       "ok": true,
       "duration": 4646.961656,
-      "position": 180.210326
-    },
-    {
-      "id": "+G2W1mXPTY",
-      "title": "Seven stowaways and a hijacked oil tanker: the strange case of the Nave Andromeda",
-      "ok": true,
-      "duration": 2679.173333,
-      "position": 180.21585
+      "position": 180.213505
     },
     {
       "id": "+SJPJ9ok9U",
       "title": "Why You Can’t Compete with Google: The Deplatforming of LiveVideo.com",
       "ok": true,
       "duration": 2674.498458,
-      "position": 180.22418
+      "position": 180.211203
     },
     {
       "id": "5:16",
       "title": "SLP27 - Turning Stranded Natural Gas Into Bitcoin Mining Hashes, with Steve Barbour of Upstream Data",
       "ok": true,
       "duration": 3766.736771,
-      "position": 180.219919
+      "position": 180.216526
+    },
+    {
+      "id": "15:30",
+      "title": "Tales from the Crypt #61: Jack Dorsey",
+      "ok": true,
+      "duration": 2104.379501,
+      "position": 180.212843
+    },
+    {
+      "id": "+G2W1mXPTY",
+      "title": "Seven stowaways and a hijacked oil tanker: the strange case of the Nave Andromeda",
+      "ok": true,
+      "duration": 2679.173333,
+      "position": 180.214465
     },
     {
       "id": "+G2W0NiFFQ",
       "title": "Sewage sleuths: the men who revealed the slow, dirty death of Welsh and English rivers",
       "ok": true,
       "duration": 2305.661333,
-      "position": 180.211316
+      "position": 180.218665
     },
     {
       "id": "+mSOZes2FM",
       "title": "#33: The Future of Blender with Ton Roosendaal & Pablo Vazquez",
       "ok": true,
       "duration": 5889.450658,
-      "position": 180.217766
-    },
-    {
-      "id": "+RxHE3jC4w",
-      "title": "Matthew Walker Ph.D, Author of “Why We Sleep: Unlocking the Power of Sleep and Dreams” (#17)",
-      "ok": false,
-      "error": "MEDIA_ELEMENT_ERROR: Format error",
-      "duration": null,
-      "position": 0
-    },
-    {
-      "id": "+S_7eCatnU",
-      "title": "EP 176 Gregg Henriques Part 1: Addressing the Enlightenment Gap",
-      "ok": true,
-      "duration": 5890.373083,
-      "position": 180.222566
-    },
-    {
-      "id": "38:45",
-      "title": "The Moth Radio Hour: Delicious! Stories of Food & Feelings",
-      "ok": true,
-      "duration": 3050.736333,
-      "position": 180.224937
-    },
-    {
-      "id": "+FUsKSZuBc",
-      "title": "West Virginia v. Environmental Protection Agency",
-      "ok": true,
-      "duration": 7384.056009,
-      "position": 180.21107
-    },
-    {
-      "id": "+YQ31Gx6tw",
-      "title": "Which country is the best in the world at managing COVID?",
-      "ok": true,
-      "duration": 771.391688,
-      "position": 180.22003
-    },
-    {
-      "id": "+LDKf6FTfw",
-      "title": "Doing For Atoms What AWS Did For Bits with Jesse Genet of Lumi",
-      "ok": true,
-      "duration": 3059.129456,
-      "position": 180.209449
+      "position": 180.211508
     },
     {
       "id": "+oiPWjrl3U",
       "title": "Why Is Murder Spiking? And Can Cities Address It Without Police?",
       "ok": true,
       "duration": 5107.704,
-      "position": 180.225335
+      "position": 180.221556
     },
     {
-      "id": "+AA7tJqdxHkE",
-      "title": "One Trick Pony",
+      "id": "38:45",
+      "title": "The Moth Radio Hour: Delicious! Stories of Food & Feelings",
       "ok": true,
-      "duration": 5434.331375,
-      "position": 180.212827
+      "duration": 3050.736333,
+      "position": 180.217924
     },
     {
       "id": "+oiPVWKYM0",
       "title": "Inside the Minds of Spiders, Octopuses and Artificial Intelligence",
       "ok": true,
       "duration": 3775.73875,
-      "position": 180.221961
+      "position": 180.224794
+    },
+    {
+      "id": "+S_7eCatnU",
+      "title": "EP 176 Gregg Henriques Part 1: Addressing the Enlightenment Gap",
+      "ok": true,
+      "duration": 5890.373083,
+      "position": 180.216621
+    },
+    {
+      "id": "+YQ31Gx6tw",
+      "title": "Which country is the best in the world at managing COVID?",
+      "ok": true,
+      "duration": 771.391688,
+      "position": 180.220085
+    },
+    {
+      "id": "+FUsKSZuBc",
+      "title": "West Virginia v. Environmental Protection Agency",
+      "ok": true,
+      "duration": 7384.056009,
+      "position": 180.219713
+    },
+    {
+      "id": "+LDKf6FTfw",
+      "title": "Doing For Atoms What AWS Did For Bits with Jesse Genet of Lumi",
+      "ok": true,
+      "duration": 3059.129456,
+      "position": 180.222483
+    },
+    {
+      "id": "+AA7tJqdxHkE",
+      "title": "One Trick Pony",
+      "ok": true,
+      "duration": 5434.331375,
+      "position": 180.212824
     },
     {
       "id": "+CuhudQ56w",
       "title": "197 - Conspiratorial Thinking",
       "ok": true,
       "duration": 5051.559125,
-      "position": 180.213294
+      "position": 180.219496
     },
     {
       "id": "+Cuhug5Y3E",
       "title": "185 - Masks",
       "ok": true,
       "duration": 5468.786938,
-      "position": 180.222345
+      "position": 180.220059
+    },
+    {
+      "id": "+Do0X1PN6k",
+      "title": "1A: Overview and Introduction to Lisp",
+      "ok": true,
+      "duration": 4373.172,
+      "position": 180.220777
     }
   ]
 }

@@ -180,7 +180,10 @@ export function PlayerProvider({ children, episodes }: { children: ReactNode; ep
   const nextStation = useCallback(() => {
     const queue = radioQueue.some((episode) => episode.id !== active?.id && !failedStations.current.has(episode.id)) ? radioQueue : buildQueue()
     const next = queue.find((episode) => episode.id !== active?.id && !failedStations.current.has(episode.id))
-    if (!next) return
+    if (!next) {
+      setError('No other station is available. Try playing an episode from Discover.')
+      return
+    }
     setRadioQueue(queue.filter((episode) => episode.id !== next.id))
     playEpisode(next, 'radio')
   }, [active?.id, buildQueue, playEpisode, radioQueue])
@@ -258,13 +261,17 @@ export function PlayerProvider({ children, episodes }: { children: ReactNode; ep
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
       const target = event.target as HTMLElement
-      if (['INPUT', 'TEXTAREA', 'SELECT', 'BUTTON', 'A'].includes(target.tagName) || target.isContentEditable) return
-      if (event.code === 'Space') { event.preventDefault(); toggle() }
+      if (['INPUT', 'TEXTAREA', 'SELECT'].includes(target.tagName) || target.isContentEditable) return
+      if (event.code === 'Space' && !['BUTTON', 'A'].includes(target.tagName)) {
+        event.preventDefault()
+        if (active) toggle()
+        else playRadio()
+      }
       if (event.code === 'ArrowRight' || event.key.toLowerCase() === 'n') { event.preventDefault(); tune() }
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [toggle, tune])
+  }, [toggle, tune, active, playRadio])
 
   useEffect(() => () => {
     ++requestId.current
